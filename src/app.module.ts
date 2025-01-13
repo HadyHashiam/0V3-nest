@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { ClassSerializerInterceptor, Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -18,8 +19,8 @@ import { APP_INTERCEPTOR } from '@nestjs/core';
       // envFilePath: '.env.development',
     }),
     MongooseModule.forRoot(process.env.DB_URL), // 2- DB connection
-    UserModule, //  UserModule
-    AuthModule, // AuthModule
+    UserModule, 
+    AuthModule, 
     JwtModule.register({
       // Auth module JWt
       global: true,
@@ -30,12 +31,14 @@ import { APP_INTERCEPTOR } from '@nestjs/core';
       // MailerModule
       transport: {
         service: 'gmail',
+        // host: process.env.EMAIL_HOST,
         auth: {
           user: process.env.EMAIL_USERNAME,
           pass: process.env.EMAIL_PASSWORD,
         },
       },
     }),
+    
   ],
   controllers: [AppController],
   providers: [AppService],

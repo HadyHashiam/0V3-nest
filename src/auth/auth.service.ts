@@ -1,9 +1,12 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import {
   HttpException,
   Injectable,
   NotFoundException,
   UnauthorizedException,
 } from '@nestjs/common';
+import * as crypto from 'crypto';
+
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { User } from '../user/user.schema';
@@ -88,8 +91,8 @@ export class AuthService {
         access_token: accessToken,
       };
     } catch (error) {
-      console.error('Error in signUp:', error); // سجل الخطأ هنا
-      throw error; // إعادة رمي الخطأ
+      console.error('Error in signUp:', error);
+      throw error;
     }
   }
 
@@ -149,10 +152,18 @@ export class AuthService {
     const code = Math.floor(Math.random() * 1000000)
     .toString()
     .padStart(6, '0');
-    // inser code in db=> verificationCode
+
+    // تشفير الكود باستخدام SHA256
+    const hashedCode = crypto.createHash('sha256').update(code).digest('hex');
+
+    // insert code in db=> verificationCode
     await this.userModel.findOneAndUpdate(
       { email },
-      { verificationCode: code },
+      {
+        verificationCode: hashedCode,
+        passwordResetExpires: Date.now() + 10 * 60 * 1000,
+        passwordResetVerified: false,
+      },
     );
     // send code to user email
     const htmlMessage = `
@@ -166,7 +177,7 @@ export class AuthService {
     this.mailService.sendMail({
       from: `Ecommerce-Nest.JS <${process.env.MAIL_USER}>`,
       to: email,
-      subject: `Ecommerce-Nest.JS - Reset Password`,
+      subject: `Ecommerce-Nest.JS - Your password reset code (valid for 10 min)`,
       html: htmlMessage,
     });
     return {
@@ -175,22 +186,25 @@ export class AuthService {
     };
   }
 
-  async virifyCode({ email, code }: { email: string; code: string }) {
-    const user = await this.userModel
-    .findOne({ email })
-    .select('verificationCode');
+  async verifyCode({ code }: { code: string }) {
+    const hashedCode = crypto.createHash('sha256').update(code).digest('hex');
+    // find user by hashedPassword
+    const user = await this.userModel.findOne({
+      verificationCode: hashedCode,
+      passwordResetExpires: { $gt: Date.now() },
+    });
 
     if (!user) {
-      throw new NotFoundException('User Not Found');
+      throw new NotFoundException('Invalid or expired code');
     }
 
-    if (user.verificationCode !== code) {
-      throw new UnauthorizedException('Invalid code');
-    }
-
+    // update user status
     await this.userModel.findOneAndUpdate(
-      { email },
-      { verificationCode: null },
+      { _id: user._id },
+      {
+        verificationCode: null, // remove code
+        passwordResetVerified: true, // update status
+      },
     );
 
     return {
@@ -212,7 +226,12 @@ export class AuthService {
     );
     await this.userModel.findOneAndUpdate(
       { email: changePasswordData.email },
-      { password },
+      {
+        password,
+        passwordResetCode: null,
+        passwordResetExpires: null,
+        passwordResetVerified: null,
+      },
     );
     return {
       status: 200,

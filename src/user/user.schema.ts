@@ -1,6 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
-import { Exclude } from 'class-transformer';
 
 export type UserDocument = HydratedDocument<User>;
 
@@ -67,6 +66,20 @@ export class User {
     type: String,
   })
   verificationCode: string;
+  @Prop({
+    type: Date,
+  })
+  passwordChangedAt: Date;
+  @Prop({
+    type: Date,
+  })
+  passwordResetExpires: Date;
+
+  @Prop({
+    type: Boolean,
+  })
+  passwordResetVerified: boolean;
+
   @Prop({
     type: String,
     enum: ['male', 'female'],

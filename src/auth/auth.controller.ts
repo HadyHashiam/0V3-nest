@@ -58,15 +58,14 @@ export class AuthController {
   //  @docs   Any User Can Virify Code
   //  @Route  POST /auth/virify-code
   //  @access Public
-  @Post('virify-code')
-  virifyCode(
+  @Post('verify-code')
+  verifyCode(
     @Body(new ValidationPipe({ forbidNonWhitelisted: true }))
-    virifyCode: {
-      email: string;
+    verifyCodeDto: {
       code: string;
     },
   ) {
-    return this.authService.virifyCode(virifyCode);
+    return this.authService.verifyCode(verifyCodeDto);
   }
 
   //  @docs   Any User Can change password

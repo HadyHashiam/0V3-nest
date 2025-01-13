@@ -1,24 +1,4 @@
 
-### Register
-POST  http://localhost:3000/auth/sign-up
-Content-Type: application/json
-
-{
-  "name":"hady",
-  "email": "hadyhaqsqhsصimw17e@gmail.com",
-  "password": "123456789"
-}
-
-
-### login
-POST  http://localhost:3000/auth/login
-Content-Type: application/json
-Authorization:  Bearer 
-
-{
-  "email": "hadyhashim17@gmail.com",
-  "password": "123456789"
-}
 
 ### GetAll 
 GET http://localhost:3000/api/users

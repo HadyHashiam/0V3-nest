@@ -1,0 +1,68 @@
+### GetAll 
+GET http://localhost:3000/api/products
+
+
+### GetOne 
+GET http://localhost:3000/api/products/2
+Content-Type: application/json
+
+
+
+### CreateOne
+POST  http://localhost:3000/api/products
+Content-Type: application/json
+Authorization:  Bearer 
+
+{
+  "title": "product 9 ",
+  "price": 989899
+}
+
+
+
+
+
+### UpdateOne
+PUT http://localhost:3000/api/products/3
+Content-Type: application/json
+
+{
+  "title": "Product90",
+  "price": 55
+}
+
+
+
+
+### DeleteONE 
+DELETE  http://localhost:3000/api/products/1
+Content-Type: application/json
+
+
+
+
+
+
+
+
+
+
+
+
+
+// GetAll With Express.js
+### Get REQUEST
+GET http://localhost:3000/api/products/express
+name: hady
+age:24
+
+// Create With Express.js
+### GET REQUEST
+POST  http://localhost:3000/api/products/express
+Content-Type: application/json
+Authorization:  Bearer 
+
+{
+  "title": "Product88",
+  "price": "80880"
+}

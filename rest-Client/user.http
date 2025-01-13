@@ -1,0 +1,53 @@
+
+### Register
+POST  http://localhost:3000/auth/sign-up
+Content-Type: application/json
+
+{
+  "name":"hady",
+  "email": "hadyhaqsqhsصimw17e@gmail.com",
+  "password": "123456789"
+}
+
+
+### login
+POST  http://localhost:3000/auth/login
+Content-Type: application/json
+Authorization:  Bearer 
+
+{
+  "email": "hadyhashim17@gmail.com",
+  "password": "123456789"
+}
+
+### GetAll 
+GET http://localhost:3000/api/users
+Authorization:  Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Nzg0MmM1Y2FkZGFhMjY2YmFlNWEzM2YiLCJlbWFpbCI6ImhhZHloYXNoaW0xN0BnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MzY3MTU0MDQsImV4cCI6MjMzNjcxNTQwNH0.GyJN5JZ6qbYgG8Tdv7rjqfLeO7l43WbLRUXPEzjod-E
+
+
+
+### GetOne 
+GET http://localhost:3000/api/users/2
+Content-Type: application/json
+Authorization:  Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Nzg0MmM1Y2FkZGFhMjY2YmFlNWEzM2YiLCJlbWFpbCI6ImhhZHloYXNoaW0xN0BnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MzY3MTU0MDQsImV4cCI6MjMzNjcxNTQwNH0.GyJN5JZ6qbYgG8Tdv7rjqfLeO7l43WbLRUXPEzjod-E
+### gey (Current-user) data  
+GET  http://localhost:3000/api/users/current-user
+Content-Type: application/json
+Authorization:  Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwidXNlclR5cGUiOiJub3JtYWxfdXNlciIsImlhdCI6MTczNTI3Mzc5NX0.cB5hkhT3PtR8e6tLxmVWuM_QJR_OJQC1jkq9Lz_IK5o
+
+
+### Update User
+PUT  http://localhost:3000/api/users
+Content-Type: application/json
+Authorization:  Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwidXNlclR5cGUiOiJub3JtYWxfdXNlciIsImlhdCI6MTczNTI3NzU1Nn0.eEtbqwgKcNf9GZl66LsMowANhYsMbk-vBLfnALbCoWc
+{
+  "username":"Hady Hady Hady"
+}
+
+
+### DeleteONE 
+DELETE  http://localhost:3000/api/users/7
+Content-Type: application/json
+Authorization:  Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywidXNlclR5cGUiOiJub3JtYWxfdXNlciIsImlhdCI6MTczNTI4MDE4MX0.1NKK5Dg-1g7zOeGdEryTD1EgmX_ZRPGzb1QzAIuo_Xk
+
+

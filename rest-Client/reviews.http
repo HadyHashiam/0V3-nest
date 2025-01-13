@@ -1,0 +1,25 @@
+### GetAll 
+GET http://localhost:3000/api/reviews
+
+
+### GetOne 
+GET http://localhost:3000/api/reviews/2
+Content-Type: application/json
+
+
+### CreateOne
+POST  http://localhost:3000/api/reviews
+Content-Type: application/json
+Authorization:  Bearer 
+
+{
+  "rating": 90,
+  "comment": "goooooooooooood"
+}
+
+
+
+
+### DeleteONE 
+DELETE  http://localhost:3000/api/reviews/1
+Content-Type: application/json

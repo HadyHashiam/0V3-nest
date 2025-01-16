@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import {
   CanActivate,
   ExecutionContext,
@@ -8,7 +9,7 @@ import { Reflector } from '@nestjs/core';
 import { JwtService } from '@nestjs/jwt';
 import { Request } from 'express';
 import { Roles } from '../decorator/Roles.decorator';
-import { JWTPayLoadType } from '../../../dist/utils/types';
+import { JWTPayLoadType } from '../../utils/utiltypes'
 import { CURRENT_USER_KEY } from 'src/utils/constant';
 
 

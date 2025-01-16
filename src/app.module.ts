@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { ClassSerializerInterceptor, Module } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { MongooseModule } from '@nestjs/mongoose';
@@ -8,7 +8,15 @@ import { JwtModule } from '@nestjs/jwt';
 import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
 import { MailerModule } from '@nestjs-modules/mailer';
-import { APP_INTERCEPTOR } from '@nestjs/core';
+import { CategoryModule } from './category/category.module';
+import { SubCategoryModule } from './sub-category/sub-category.module';
+import { BrandModule } from './brand/brand.module';
+import { CouponModule } from './coupon/coupon.module';
+import { TaxModule } from './tax/tax.module';
+import { ReviewModule } from './review/review.module';
+import { ProductModule } from './product/product.module';
+import { SuppliersModule } from './suppliers/suppliers.module';
+import { OrderModule } from './order/order.module';
 
 @Module({
   imports: [
@@ -16,11 +24,9 @@ import { APP_INTERCEPTOR } from '@nestjs/core';
     ConfigModule.forRoot({
       isGlobal: true,
       envFilePath: `.env.${process.env.NODE_ENV}`,
-      // envFilePath: '.env.development',
     }),
     MongooseModule.forRoot(process.env.DB_URL), // 2- DB connection
-    UserModule, 
-    AuthModule, 
+
     JwtModule.register({
       // Auth module JWt
       global: true,
@@ -38,7 +44,17 @@ import { APP_INTERCEPTOR } from '@nestjs/core';
         },
       },
     }),
-    
+    UserModule,
+    AuthModule,
+    CategoryModule,
+    SubCategoryModule,
+    BrandModule,
+    CouponModule,
+    TaxModule,
+    ReviewModule,
+    ProductModule,
+    SuppliersModule,
+    OrderModule,
   ],
   controllers: [AppController],
   providers: [AppService],

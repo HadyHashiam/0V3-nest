@@ -1,0 +1,44 @@
+
+### CREATE ONE 
+POST   http://localhost:3000/coupon
+Content-Type: application/json
+Authorization:  Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Nzg0MmM1Y2FkZGFhMjY2YmFlNWEzM2YiLCJlbWFpbCI6ImhhZHloYXNoaW0xN0BnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MzcwNTMwNTQsImV4cCI6MjMzNzA1MzA1NH0.PGzX0zyN3wWEKx22Bm0Td5MDZW3VEuQ7Kzj2S4JpSjA
+
+{
+  "name":"auc",
+  "expireDate":"2025-02-01",
+  "discount":200
+}
+
+
+
+### GET ALL 
+GET   http://localhost:3000/coupon
+Content-Type: application/json
+Authorization:  Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Nzg0MmM1Y2FkZGFhMjY2YmFlNWEzM2YiLCJlbWFpbCI6ImhhZHloYXNoaW0xN0BnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MzcwNTMwNTQsImV4cCI6MjMzNzA1MzA1NH0.PGzX0zyN3wWEKx22Bm0Td5MDZW3VEuQ7Kzj2S4JpSjA
+
+
+
+### find One
+GET   http://localhost:3000/coupon/678953d71b7d4159997f0a47
+Content-Type: application/json
+Authorization:  Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Nzg0MmM1Y2FkZGFhMjY2YmFlNWEzM2YiLCJlbWFpbCI6ImhhZHloYXNoaW0xN0BnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MzcwNTMwNTQsImV4cCI6MjMzNzA1MzA1NH0.PGzX0zyN3wWEKx22Bm0Td5MDZW3VEuQ7Kzj2S4JpSjA
+
+
+
+
+### UPDATE One
+PATCH    http://localhost:3000/coupon/678953d71b7d4159997f0a47
+Content-Type: application/json
+Authorization:  Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Nzg0MmM1Y2FkZGFhMjY2YmFlNWEzM2YiLCJlbWFpbCI6ImhhZHloYXNoaW0xN0BnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MzcwNTMwNTQsImV4cCI6MjMzNzA1MzA1NH0.PGzX0zyN3wWEKx22Bm0Td5MDZW3VEuQ7Kzj2S4JpSjA
+
+{
+  "name":"Tech "
+}
+
+
+
+### DELETE One
+DELETE     http://localhost:3000/coupon/67895605bedb7bdd080160f6
+Content-Type: application/json
+Authorization:  Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Nzg0MmM1Y2FkZGFhMjY2YmFlNWEzM2YiLCJlbWFpbCI6ImhhZHloYXNoaW0xN0BnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MzcwNTMwNTQsImV4cCI6MjMzNzA1MzA1NH0.PGzX0zyN3wWEKx22Bm0Td5MDZW3VEuQ7Kzj2S4JpSjA

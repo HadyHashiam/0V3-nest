@@ -18,7 +18,7 @@ import { MailerService } from '@nestjs-modules/mailer';
  *
  *
  */
-import { JWTPayLoadType } from '../utils/types';
+import { JWTPayLoadType } from '../utils/utiltypes';
 import { UserType } from '../utils/enums';
 import { JwtService } from '@nestjs/jwt';
 

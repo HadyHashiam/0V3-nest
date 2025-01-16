@@ -12,7 +12,7 @@ const saltOrRounds = 10;
  *
  *
  */
-import { JWTPayLoadType } from '../utils/types';
+import { JWTPayLoadType } from '../utils/utiltypes';
 import { UserType } from '../utils/enums';
 import { JwtService } from '@nestjs/jwt';
 

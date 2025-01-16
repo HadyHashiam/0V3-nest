@@ -1,0 +1,26 @@
+
+### CREATE ONE 
+POST   http://localhost:3000/tax
+Content-Type: application/json
+Authorization:  Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Nzg0MmM1Y2FkZGFhMjY2YmFlNWEzM2YiLCJlbWFpbCI6ImhhZHloYXNoaW0xN0BnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MzcwNTMwNTQsImV4cCI6MjMzNzA1MzA1NH0.PGzX0zyN3wWEKx22Bm0Td5MDZW3VEuQ7Kzj2S4JpSjA
+
+{
+  "taxPrice":13,
+  "shippingPrice":10
+}
+
+
+
+### find 
+GET   http://localhost:3000/tax
+Content-Type: application/json
+Authorization:  Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Nzg0MmM1Y2FkZGFhMjY2YmFlNWEzM2YiLCJlbWFpbCI6ImhhZHloYXNoaW0xN0BnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MzcwNTMwNTQsImV4cCI6MjMzNzA1MzA1NH0.PGzX0zyN3wWEKx22Bm0Td5MDZW3VEuQ7Kzj2S4JpSjA
+
+
+
+
+
+### DELETE One
+DELETE     http://localhost:3000/tax/67895605bedb7bdd080160f6
+Content-Type: application/json
+Authorization:  Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Nzg0MmM1Y2FkZGFhMjY2YmFlNWEzM2YiLCJlbWFpbCI6ImhhZHloYXNoaW0xN0BnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MzcwNTMwNTQsImV4cCI6MjMzNzA1MzA1NH0.PGzX0zyN3wWEKx22Bm0Td5MDZW3VEuQ7Kzj2S4JpSjA

@@ -67,7 +67,9 @@ export class AuthService {
       if (user) {
         throw new HttpException('User already exist', 400);
       }
-      const password = await bcrypt.hash(signUpDto.password, saltOrRounds);
+
+      const password = signUpDto.password;
+      // const password = await bcrypt.hash(signUpDto.password, saltOrRounds);
       const userCreated = {
         password,
         role: 'user',

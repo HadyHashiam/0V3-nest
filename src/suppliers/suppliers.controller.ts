@@ -9,6 +9,7 @@ import {
   Delete,
   ValidationPipe,
   UseGuards,
+  Query,
 } from '@nestjs/common';
 import { SuppliersService } from './suppliers.service';
 import { CreateSupplierDto } from './dto/create-supplier.dto';
@@ -21,8 +22,8 @@ export class SuppliersController {
   constructor(private readonly suppliersService: SuppliersService) {}
 
   //  @docs   Admin Can create a new Suppliers
-  //  @Route  POST /api/v1/suppliers
-  //  @access Private [Amdin]
+  //  @Route  POST /suppliers
+  //  @access Private [Admin]
   @Post()
   @Roles(['admin'])
   @UseGuards(AuthGuard)
@@ -34,15 +35,15 @@ export class SuppliersController {
   }
 
   //  @docs   Any User Can get all Suppliers
-  //  @Route  GET /api/v1/suppliers
+  //  @Route  GET /suppliers
   //  @access Public
   @Get()
-  findAll() {
-    return this.suppliersService.findAll();
+  findAll(@Query() query) {
+    return this.suppliersService.findAll(query);
   }
 
   //  @docs   Any User Can get single Suppliers
-  //  @Route  GET /api/v1/suppliers
+  //  @Route  GET /suppliers
   //  @access Public
   @Get(':id')
   findOne(@Param('id') id: string) {
@@ -50,7 +51,7 @@ export class SuppliersController {
   }
 
   //  @docs   Admin can update a supplier
-  //  @Route  PATCH /api/v1/suppliers
+  //  @Route  PATCH /suppliers
   //  @access Private [admin]
   @Patch(':id')
   @Roles(['admin'])
@@ -64,7 +65,7 @@ export class SuppliersController {
   }
 
   //  @docs   Admin can delete a Supplier
-  //  @Route  DELETE /api/v1/suppliers
+  //  @Route  DELETE /suppliers
   //  @access Private [admin]
   @Delete(':id')
   @Roles(['admin'])

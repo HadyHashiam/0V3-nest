@@ -8,6 +8,7 @@ import {
   Delete,
   ValidationPipe,
   UseGuards,
+  Query,
 } from '@nestjs/common';
 import { SubCategoryService } from './sub-category.service';
 import { CreateSubCategoryDto } from './dto/create-sub-category.dto';
@@ -36,8 +37,8 @@ export class SubCategoryController {
   //  @Route  GET /sub-category
   //  @access Public
   @Get()
-  findAll() {
-    return this.subCategoryService.findAll();
+  findAll(@Query() query) {
+    return this.subCategoryService.findAll(query);
   }
   //###############################################################################################
   //  @docs   Any User Can get any sub category
@@ -62,7 +63,6 @@ export class SubCategoryController {
     return this.subCategoryService.update(id, updateSubCategoryDto);
   }
   //###############################################################################################
-
   //  @docs   Admin Can delete any sub category
   //  @Route  DELETE /sub-category/:id
   //  @access Private [Admin]

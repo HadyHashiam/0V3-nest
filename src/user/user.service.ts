@@ -87,7 +87,6 @@ export class UserService {
     .where('email', new RegExp(email, 'i'))
     .where('role', new RegExp(role, 'i'))
     .sort({ name: sort })
-    // .select('-password -__v')
     .exec();
     return {
       status: 200,

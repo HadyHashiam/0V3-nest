@@ -1,0 +1,43 @@
+
+
+
+
+
+### CREATE ONE 
+POST   http://localhost:3000/order/checkout/card
+Content-Type: application/json
+Authorization:  Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Nzg0MmM0YWFkZGFhMjY2YmFlNWEzM2MiLCJlbWFpbCI6ImhhZHloYXNoaW1AZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3MzczMzQ2ODIsImV4cCI6MjMzNzMzNDY4Mn0.HW3nLgCDhjhTGJyaBZ7DQOjC-w4UNOITZWV1YuZk-eo
+
+
+{
+  "shippingAddress":"one-to-one"
+  }
+
+
+
+### GET ALL  carts for admin
+GET   http://localhost:3000/cart/admin
+Content-Type: application/json
+Authorization:  Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Nzg0MmM0YWFkZGFhMjY2YmFlNWEzM2MiLCJlbWFpbCI6ImhhZHloYXNoaW1AZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3MzczMzQ2ODIsImV4cCI6MjMzNzMzNDY4Mn0.HW3nLgCDhjhTGJyaBZ7DQOjC-w4UNOITZWV1YuZk-eo
+
+
+### find One (user cart) for admin
+GET   http://localhost:3000/cart/admin/67842c4aaddaa266bae5a33c
+Content-Type: application/json
+Authorization:  Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Nzg0MmM0YWFkZGFhMjY2YmFlNWEzM2MiLCJlbWFpbCI6ImhhZHloYXNoaW1AZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3MzczMzQ2ODIsImV4cCI6MjMzNzMzNDY4Mn0.HW3nLgCDhjhTGJyaBZ7DQOjC-w4UNOITZWV1YuZk-eo
+
+
+### UPDATE One
+PATCH    http://localhost:3000/cart/678953d71b7d4159997f0a47
+Content-Type: application/json
+Authorization:  Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Nzg0MmM0YWFkZGFhMjY2YmFlNWEzM2MiLCJlbWFpbCI6ImhhZHloYXNoaW1AZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3MzczMzQ2ODIsImV4cCI6MjMzNzMzNDY4Mn0.HW3nLgCDhjhTGJyaBZ7DQOjC-w4UNOITZWV1YuZk-eo
+
+{
+  "name":"Tech "
+}
+
+
+### DELETE One
+DELETE     http://localhost:3000/cart/67895605bedb7bdd080160f6
+Content-Type: application/json
+Authorization:  Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Nzg0MmM0YWFkZGFhMjY2YmFlNWEzM2MiLCJlbWFpbCI6ImhhZHloYXNoaW1AZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3MzczMzQ2ODIsImV4cCI6MjMzNzMzNDY4Mn0.HW3nLgCDhjhTGJyaBZ7DQOjC-w4UNOITZWV1YuZk-eo

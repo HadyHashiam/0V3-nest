@@ -17,6 +17,8 @@ import { ReviewModule } from './review/review.module';
 import { ProductModule } from './product/product.module';
 import { SuppliersModule } from './suppliers/suppliers.module';
 import { OrderModule } from './order/order.module';
+import { CartModule } from './cart/cart.module';
+import { UploadFilesModule } from './upload-files/upload-files.module';
 
 @Module({
   imports: [
@@ -25,16 +27,16 @@ import { OrderModule } from './order/order.module';
       isGlobal: true,
       envFilePath: `.env.${process.env.NODE_ENV}`,
     }),
-    MongooseModule.forRoot(process.env.DB_URL), // 2- DB connection
-
+    // 2- DB connection
+    MongooseModule.forRoot(process.env.DB_URL),
+    // Auth module JWt
     JwtModule.register({
-      // Auth module JWt
       global: true,
       secret: process.env.JWT_SECRET,
       signOptions: { expiresIn: '600000000s' },
     }),
+    // MailerModule
     MailerModule.forRoot({
-      // MailerModule
       transport: {
         service: 'gmail',
         // host: process.env.EMAIL_HOST,
@@ -55,6 +57,8 @@ import { OrderModule } from './order/order.module';
     ProductModule,
     SuppliersModule,
     OrderModule,
+    CartModule,
+    UploadFilesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

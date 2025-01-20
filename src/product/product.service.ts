@@ -6,6 +6,7 @@ import { Product } from './product.entity';
 import { InjectModel } from '@nestjs/mongoose';
 import { Category } from 'src/category/category.entity';
 import { SubCategory } from 'src/sub-category/sub-category.entity';
+import { ApiFeatures } from 'src/utils/apiFeatures';
 
 @Injectable()
 export class ProductService {
@@ -16,6 +17,8 @@ export class ProductService {
     @InjectModel(SubCategory.name)
     private readonly subCategoryModule: Model<SubCategory>,
   ) {}
+
+  //#############################################################
 
   async create(createProductDto: CreateProductDto) {
     const product = await this.productModel.findOne({
@@ -40,18 +43,16 @@ export class ProductService {
       if (!subCategory) {
         throw new HttpException('This Sub Category not Exist', 400);
       }
-    }
-    const priceAfterDiscount = createProductDto?.priceAfterDiscount || 0;
-    if (createProductDto.price < priceAfterDiscount) {
-      throw new HttpException(
-        'Must be price After discount greater than price',
-        400,
-      );
+      const priceAfterDiscount = createProductDto?.priceAfterDiscount || 0;
+      if (createProductDto.price < priceAfterDiscount) {
+        throw new HttpException(
+          'price Must be greater the discount price',
+          400,
+        );
+      }
     }
 
-    const newProduct = await (
-      await this.productModel.create(createProductDto)
-    ).populate('category subCategory brand', '-__v');
+    const newProduct = await await this.productModel.create(createProductDto);
     return {
       status: 200,
       message: 'Product created successfully',
@@ -59,80 +60,34 @@ export class ProductService {
     };
   }
 
+  //#############################################################
+
   async findAll(query: any) {
-    // 1) filter
-    // eslint-disable-next-line prefer-const
-    let requestQuery = { ...query };
-    const removeQuery = [
-      'page',
-      'limit',
-      'sort',
-      'keyword',
-      'categoty',
-      'fields',
-    ];
-    removeQuery.forEach((singelQuery) => {
-      delete requestQuery[singelQuery];
-    });
-    requestQuery = JSON.parse(
-      JSON.stringify(requestQuery).replace(
-        /\b(gte|lte|lt|gt)\b/g,
-        (match) => `$${match}`, // arrow fun
-      ),
-    );
+    const totalDocuments = await this.productModel.countDocuments();
+    const apiFeatures = new ApiFeatures(this.productModel.find(), query)
+    .filter()
+    .search('Products')
+    .sort()
+    .limitFields()
+    .paginate(totalDocuments);
 
-    // 2) pagenation
-    const page = query?.page || 1;
-    const limit = query?.limit || 5;
-    const skip = (page - 1) * limit;
-
-    // 3) sorting
-    // eslint-disable-next-line prefer-const
-    let sort = query?.sort || 'asc';
-    if (!['asc', 'desc'].includes(sort)) {
-      throw new HttpException('Invalid sort', 400);
-    }
-    // 4) fields
-    // eslint-disable-next-line prefer-const
-    let fields = query?.fields || ''; // description,title
-    fields = fields.split(',').join(' ');
-
-    // 5) search
-    // eslint-disable-next-line prefer-const
-    let findData = { ...requestQuery };
-
-    if (query.keyword) {
-      findData.$or = [
-        { title: { $regex: query.keyword } },
-        { description: { $regex: query.keyword } },
-      ];
-    }
-    if (query.category) {
-      findData.category = query.category.toString();
-    }
-
-    const products = await this.productModel
-    .find(findData)
-    .limit(limit)
-    .skip(skip)
-    .sort({ title: sort })
-    .select(fields);
+    const products = await apiFeatures.getQuery();
     return {
       status: 200,
-      message: 'Found Product',
+      message: 'Found Products',
       isEmpty: products.length > 0 ? 'false' : 'true',
       length: products.length,
+      pagination: apiFeatures.paginationResult,
       data: products,
     };
   }
 
+  //#############################################################
+
   async findOne(id: string) {
-    const product = await this.productModel
-    .findById(id)
-    .select('-__v')
-    .populate('category subCategory brand', '-__v');
+    const product = await this.productModel.findById(id)
     if (!product) {
-      throw new NotFoundException('Procut Not Found');
+      throw new NotFoundException('Product Not Found');
     }
 
     return {
@@ -142,11 +97,13 @@ export class ProductService {
     };
   }
 
+  //#############################################################
+
   async update(id: string, updateProductDto: UpdateProductDto) {
     const product = await this.productModel.findById(id);
 
     if (!product) {
-      throw new NotFoundException('Procut Not Found');
+      throw new NotFoundException('Product Not Found');
     }
     if (updateProductDto.category) {
       const category = await this.categoryModule.findById(
@@ -166,12 +123,12 @@ export class ProductService {
     }
 
     if (product.quantity < updateProductDto.sold) {
-      throw new HttpException('Thie Quantity is < sold', 400);
+      throw new HttpException('The Quantity is < sold', 400);
     }
 
     const price = updateProductDto?.price || product.price;
     const priceAfterDiscount =
-      updateProductDto?.priceAfterDiscount || product.priceAfterDiscount;
+      updateProductDto?.priceAfterDiscount || product.Discount;
     if (price < priceAfterDiscount) {
       throw new HttpException(
         'Must be price After discount greater than price',
@@ -186,17 +143,21 @@ export class ProductService {
       .findByIdAndUpdate(id, updateProductDto, {
         new: true,
       })
-      .select('-__v')
-      .populate('category subCategory brand', '-__v'),
     };
   }
 
-  async remove(id: string): Promise<void> {
+  //#############################################################
+
+  async remove(id: string) {
     const product = await this.productModel.findById(id);
     if (!product) {
-      throw new NotFoundException('Procut Not Found');
+      throw new NotFoundException('Product Not Found');
     }
 
     await this.productModel.findByIdAndDelete(id);
+      return {
+        status: 200,
+        message: 'Product deleted successfully',
+      };
   }
 }

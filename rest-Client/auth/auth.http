@@ -5,7 +5,7 @@ Content-Type: application/json
 
 {
   "name":"hady",
-  "email": "hadyhaqsqhsmw17es@gmail.com",
+  "email": "hadyhaqsq8hw17es@gmail.com",
   "password": "123456789"
 }
 
@@ -16,7 +16,7 @@ Content-Type: application/json
 Authorization:  Bearer 
 
 {
-  "email": "hadyhashim17@gmail.com",
+  "email": "hadyhashim@gmail.com",
   "password": "123456789"
 }
 

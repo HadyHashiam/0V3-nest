@@ -1,4 +1,3 @@
-
 ### CREATE ONE 
 POST   http://localhost:3000/category
 Content-Type: application/json
@@ -18,9 +17,12 @@ Authorization:  Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Nzg0MmM1
 
 
 ### find One
-GET   http://localhost:3000/category/678953d71b7d4159997f0a47
+GET   http://localhost:3000/category/678953e51b7d4159997f0a4a
 Content-Type: application/json
 Authorization:  Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Nzg0MmM1Y2FkZGFhMjY2YmFlNWEzM2YiLCJlbWFpbCI6ImhhZHloYXNoaW0xN0BnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MzcwNTMwNTQsImV4cCI6MjMzNzA1MzA1NH0.PGzX0zyN3wWEKx22Bm0Td5MDZW3VEuQ7Kzj2S4JpSjA
+
+
+
 
 
 

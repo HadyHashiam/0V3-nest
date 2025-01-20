@@ -1,5 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
+import * as bcrypt from 'bcrypt';
 
 export type UserDocument = HydratedDocument<User>;
 
@@ -20,7 +21,6 @@ export class User {
   })
   email: string;
 
-  // @Exclude() // to Exclude the password in the response th=o the client
   @Prop({
     type: String,
     required: true,
@@ -66,10 +66,12 @@ export class User {
     type: String,
   })
   verificationCode: string;
+
   @Prop({
     type: Date,
   })
   passwordChangedAt: Date;
+
   @Prop({
     type: Date,
   })
@@ -88,3 +90,22 @@ export class User {
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
+
+// mongoose middleware to hash the password before saving the user
+UserSchema.pre<UserDocument>('save', async function (next) {
+  if (!this.isModified('password')) return next();
+  this.password = await bcrypt.hash(this.password, 10);
+  next();
+});
+
+
+UserSchema.pre('find', function (next) {
+  this.select('-password -__v');
+  next();
+});
+
+
+// UserSchema.pre('find', function(next) {
+//   console.log('Executing find query for user :', this.getQuery());
+//   next();
+// });

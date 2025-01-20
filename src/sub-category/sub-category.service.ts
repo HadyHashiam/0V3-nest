@@ -6,6 +6,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { SubCategory } from './sub-category.entity';
 import { Category } from 'src/category/category.entity';
 import { Model } from 'mongoose';
+import { ApiFeatures } from 'src/utils/apiFeatures';
 
 @Injectable()
 export class SubCategoryService {
@@ -29,9 +30,10 @@ export class SubCategoryService {
       throw new NotFoundException('Category not found');
     }
 
-    const newSubCategory = await (
-      await this.subCategoryModel.create(createSubCategoryDto)
-    ).populate('category', '-_id -__v');
+    // Create new sub-Category
+    const newSubCategory = await await this.subCategoryModel.create(
+      createSubCategoryDto,
+    );
     return {
       status: 200,
       message: 'Sub Category created successfully',
@@ -39,24 +41,28 @@ export class SubCategoryService {
     };
   }
   //==================================================================================================================/
-  async findAll() {
-    const subcategory = await this.subCategoryModel
-    .find()
-    .populate('category', '-_id -__v');
+  async findAll(query: any) {
+    const totalDocuments = await this.subCategoryModel.countDocuments();
+    const apiFeatures = new ApiFeatures(this.subCategoryModel.find(), query)
+    .filter()
+    .search('SubCategories')
+    .sort()
+    .limitFields()
+    .paginate(totalDocuments);
+
+    const subCategories = await apiFeatures.getQuery();
     return {
       status: 200,
-      message: 'Sub Categorys found',
-      length: subcategory.length,
-      isEmpty: subcategory.length > 0 ? 'false' : 'true',
-      data: subcategory,
+      message: 'Sub Categories found',
+      length: subCategories.length,
+      isEmpty: subCategories.length > 0 ? 'false' : 'true',
+      pagination: apiFeatures.paginationResult,
+      data: subCategories,
     };
   }
   //==================================================================================================================/
   async findOne(_id: string) {
-    const subCategory = await this.subCategoryModel
-    .findOne({ _id })
-    .select('-__v')
-    .populate('category', '-_id -__v');
+    const subCategory = await this.subCategoryModel.findOne({ _id });
     if (!subCategory) {
       throw new NotFoundException('Sub Category not found');
     }
@@ -68,16 +74,39 @@ export class SubCategoryService {
     };
   }
   //==================================================================================================================/
+  // used in category service file
+  async findByCategory(categoryId: string) {
+    const category = await this.categoryModel.findById(categoryId);
+    if (!category) {
+      throw new NotFoundException('Category not found');
+    }
+
+    const subCategories = await this.subCategoryModel.find({
+      category: categoryId,
+    });
+
+    return {
+      status: 200,
+      message: 'Subcategories found',
+      length: subCategories.length,
+      isEmpty: subCategories.length > 0 ? 'false' : 'true',
+      data: subCategories,
+    };
+  }
+
+  //==================================================================================================================/
+
   async update(_id: string, updateSubCategoryDto: UpdateSubCategoryDto) {
     const subCategory = await this.subCategoryModel.findOne({ _id });
     if (!subCategory) {
       throw new NotFoundException('Sub Category not found');
     }
 
-    const updatedSubCategory = await this.subCategoryModel
-    .findByIdAndUpdate({ _id }, UpdateSubCategoryDto, { new: true })
-    .select('-__v')
-    .populate('category', '-_id -__v');
+    const updatedSubCategory = await this.subCategoryModel.findByIdAndUpdate(
+      { _id },
+      updateSubCategoryDto,
+      { new: true },
+    );
 
     return {
       status: 200,

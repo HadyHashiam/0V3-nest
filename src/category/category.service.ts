@@ -1,18 +1,20 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { HttpException, Injectable, NotFoundException } from '@nestjs/common';
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { UpdateCategoryDto } from './dto/update-category.dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { Category } from './category.entity';
 import { Model } from 'mongoose';
+import { ApiFeatures } from 'src/utils/apiFeatures';
 
 @Injectable()
 export class CategoryService {
   constructor(
     @InjectModel(Category.name) private categoryModel: Model<Category>,
   ) {}
-
+  //#############################################################
   /**
-   *
+   *  Create a new category
    * @param createCategoryDto
    * @returns
    */
@@ -24,7 +26,7 @@ export class CategoryService {
     if (category) {
       throw new HttpException('Category already exist', 400);
     }
-
+      // Create new category
     const newCategory = await this.categoryModel.create(createCategoryDto);
     return {
       status: 200,
@@ -32,18 +34,27 @@ export class CategoryService {
       data: newCategory,
     };
   }
+  //#############################################################
+  async findAll(query: any) {
+    const totalDocuments = await this.categoryModel.countDocuments();
+    const apiFeatures = new ApiFeatures(this.categoryModel.find(), query)
+    .filter()
+    .search('Categories') // يمكنك تعديل الكلمة حسب احتياجات البحث
+    .sort()
+    .limitFields()
+    .paginate(totalDocuments);
 
-  async findAll() {
-    const category = await this.categoryModel.find().select('-__v');
+    const categories = await apiFeatures.getQuery();
     return {
       status: 200,
-      message: 'Categorys found',
-      length: category.length,
-      isEmpty: category.length > 0 ? 'false' : 'true',
-      data: category,
+      message: 'Categories found',
+      length: categories.length,
+      isEmpty: categories.length > 0 ? 'false' : 'true',
+      pagination: apiFeatures.paginationResult,
+      data: categories,
     };
   }
-
+  //#############################################################
   async findOne(_id: number) {
     const category = await this.categoryModel.findOne({ _id }).select('-__v');
     if (!category) {
@@ -56,7 +67,7 @@ export class CategoryService {
       data: category,
     };
   }
-
+  //#############################################################
   async update(_id: number, updateCategoryDto: UpdateCategoryDto) {
     const category = await this.categoryModel.findOne({ _id });
     if (!category) {
@@ -73,7 +84,7 @@ export class CategoryService {
       data: updatedCategory,
     };
   }
-
+  //#############################################################
   async remove(_id: string) {
     const category = await this.categoryModel.findOne({ _id });
     if (!category) {

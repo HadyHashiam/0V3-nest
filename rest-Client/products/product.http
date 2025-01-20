@@ -1,12 +1,11 @@
 ### GetAll 
-GET http://localhost:3000/product
-
+GET http://localhost:3000/product?&sort=price
+Authorization:  Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Nzg0MmM1Y2FkZGFhMjY2YmFlNWEzM2YiLCJlbWFpbCI6ImhhZHloYXNoaW0xN0BnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MzcwNTMwNTQsImV4cCI6MjMzNzA1MzA1NH0.PGzX0zyN3wWEKx22Bm0Td5MDZW3VEuQ7Kzj2S4JpSjA
 
 ### GetOne 
-GET http://localhost:3000/product/2
+GET http://localhost:3000/product/678994eae11a4fea34b0ab81
 Content-Type: application/json
-
-
+Authorization:  Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Nzg0MmM1Y2FkZGFhMjY2YmFlNWEzM2YiLCJlbWFpbCI6ImhhZHloYXNoaW0xN0BnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MzcwNTMwNTQsImV4cCI6MjMzNzA1MzA1NH0.PGzX0zyN3wWEKx22Bm0Td5MDZW3VEuQ7Kzj2S4JpSjA
 
 ### CreateOne
 POST  http://localhost:3000/product
@@ -14,38 +13,46 @@ Content-Type: application/json
 Authorization:  Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Nzg0MmM1Y2FkZGFhMjY2YmFlNWEzM2YiLCJlbWFpbCI6ImhhZHloYXNoaW0xN0BnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MzcwNTMwNTQsImV4cCI6MjMzNzA1MzA1NH0.PGzX0zyN3wWEKx22Bm0Td5MDZW3VEuQ7Kzj2S4JpSjA
 
 {
-  "title": "Iphone 12 Pro Max",
-  "description": "The best phone in the world",
+  "title": "oض74352قي13ص2 yDell G3 3500",
+  "description": "The best Gaming laptop in the world",
   "quantity": 10 ,
-  "imageCover": "images.jpg",
-  "images": ["images1.jpg", "images2.jpg"],
+  "imageCover": "images2.jpg",
+  "images": ["images12.jpg", "images22.jpg"],
   "sold": 1,
-  "price": 1000,
+  "price": 5000,
   "colors": ["red", "black"],
   "category": "678954c3e6f8db18127f516b",
-  "subCategory": "67895578e6f8db18127f5177",
-  "brand": "67895616bedb7bdd080160fc"
+  "subCategory": "67895570e6f8db18127f5172",
+  "brand": "67895612bedb7bdd080160f9"
 }
 
 
 
 
-
 ### UpdateOne
-PUT http://localhost:3000/product/3
+PATCH  http://localhost:3000/product/67895be071cc19994284bca9
 Content-Type: application/json
+Authorization:  Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Nzg0MmM1Y2FkZGFhMjY2YmFlNWEzM2YiLCJlbWFpbCI6ImhhZHloYXNoaW0xN0BnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MzcwNTMwNTQsImV4cCI6MjMzNzA1MzA1NH0.PGzX0zyN3wWEKx22Bm0Td5MDZW3VEuQ7Kzj2S4JpSjA
 
-{
-  "title": "Product90",
-  "price": 55
+{ 
+  "title": "Iphone 13 Pro max "
 }
 
 
 
 
 ### DeleteONE 
-DELETE  http://localhost:3000/product/1
+DELETE  http://localhost:3000/product/678ac86a75fac24094a6ce61
 Content-Type: application/json
+Authorization:  Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Nzg0MmM1Y2FkZGFhMjY2YmFlNWEzM2YiLCJlbWFpbCI6ImhhZHloYXNoaW0xN0BnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MzcwNTMwNTQsImV4cCI6MjMzNzA1MzA1NH0.PGzX0zyN3wWEKx22Bm0Td5MDZW3VEuQ7Kzj2S4JpSjA
+
+
+
+
+
+
+
+
 
 
 

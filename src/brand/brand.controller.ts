@@ -8,6 +8,7 @@ import {
   Delete,
   ValidationPipe,
   UseGuards,
+  Query,
 } from '@nestjs/common';
 import { BrandService } from './brand.service';
 import { CreateBrandDto } from './dto/create-brand.dto';
@@ -36,8 +37,8 @@ export class BrandController {
   //  @Route  GET /api/v1/brand
   //  @access Public
   @Get()
-  findAll() {
-    return this.brandService.findAll();
+  findAll(@Query() query) {
+    return this.brandService.findAll(query);
   }
 
   //  @docs   Any User Can get single Brand

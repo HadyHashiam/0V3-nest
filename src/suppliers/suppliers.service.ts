@@ -4,6 +4,7 @@ import { UpdateSupplierDto } from './dto/update-supplier.dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { Suppliers } from './supplier.entity';
 import { Model } from 'mongoose';
+import { ApiFeatures } from 'src/utils/apiFeatures';
 
 @Injectable()
 export class SuppliersService {
@@ -27,12 +28,22 @@ export class SuppliersService {
     };
   }
 
-  async findAll() {
-    const suppliers = await this.suppliersModule.find().select('-__v');
+  async findAll(query: any) {
+    const totalDocuments = await this.suppliersModule.countDocuments();
+    const apiFeatures = new ApiFeatures(this.suppliersModule.find(), query)
+    .filter()
+    .search('Suppliers') 
+    .sort()
+    .limitFields()
+    .paginate(totalDocuments);
+
+    const suppliers = await apiFeatures.getQuery();
     return {
       status: 200,
       message: 'Suppliers found',
       length: suppliers.length,
+      isEmpty: suppliers.length > 0 ? 'false' : 'true',
+      pagination: apiFeatures.paginationResult,
       data: suppliers,
     };
   }

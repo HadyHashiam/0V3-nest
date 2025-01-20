@@ -1,3 +1,8 @@
+### GET ALL 
+GET   http://localhost:3000/sub-category
+Content-Type: application/json
+Authorization:  Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Nzg0MmM1Y2FkZGFhMjY2YmFlNWEzM2YiLCJlbWFpbCI6ImhhZHloYXNoaW0xN0BnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MzcwNTMwNTQsImV4cCI6MjMzNzA1MzA1NH0.PGzX0zyN3wWEKx22Bm0Td5MDZW3VEuQ7Kzj2S4JpSjA
+
 
 ### CREATE ONE 
 POST   http://localhost:3000/sub-category
@@ -5,40 +10,39 @@ Content-Type: application/json
 Authorization:  Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Nzg0MmM1Y2FkZGFhMjY2YmFlNWEzM2YiLCJlbWFpbCI6ImhhZHloYXNoaW0xN0BnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MzcwNTMwNTQsImV4cCI6MjMzNzA1MzA1NH0.PGzX0zyN3wWEKx22Bm0Td5MDZW3VEuQ7Kzj2S4JpSjA
 
 {
-  "name":"Phones",
-  "category":"678954c3e6f8db18127f516b"
+  "name":"t-shirts7676",
+  "category":"678953e51b7d4159997f0a4a"
 }
 
 
 
-### GET ALL 
-GET   http://localhost:3000/sub-category
-Content-Type: application/json
-Authorization:  Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Nzg0MmM1Y2FkZGFhMjY2YmFlNWEzM2YiLCJlbWFpbCI6ImhhZHloYXNoaW0xN0BnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MzcwNTMwNTQsImV4cCI6MjMzNzA1MzA1NH0.PGzX0zyN3wWEKx22Bm0Td5MDZW3VEuQ7Kzj2S4JpSjA
-
-
-
 ### find One
-GET   http://localhost:3000/sub-category/678953d71b7d4159997f0a47
+GET   http://localhost:3000/sub-category/678ac3cb088872996187f37d
 Content-Type: application/json
 Authorization:  Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Nzg0MmM1Y2FkZGFhMjY2YmFlNWEzM2YiLCJlbWFpbCI6ImhhZHloYXNoaW0xN0BnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MzcwNTMwNTQsImV4cCI6MjMzNzA1MzA1NH0.PGzX0zyN3wWEKx22Bm0Td5MDZW3VEuQ7Kzj2S4JpSjA
+
+### find all sub-categories for specific category
+GET   http://localhost:3000/category/678953e51b7d4159997f0a4a/subcategories
+Content-Type: application/json
+Authorization:  Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Nzg0MmM1Y2FkZGFhMjY2YmFlNWEzM2YiLCJlbWFpbCI6ImhhZHloYXNoaW0xN0BnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MzcwNTMwNTQsImV4cCI6MjMzNzA1MzA1NH0.PGzX0zyN3wWEKx22Bm0Td5MDZW3VEuQ7Kzj2S4JpSjA
+
 
 
 
 
 ### UPDATE One
-PATCH    http://localhost:3000/sub-category/678953d71b7d4159997f0a47
+PATCH    http://localhost:3000/sub-category/678ac3cb088872996187f37d
 Content-Type: application/json
-Authorization:  Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Nzg0MmM1Y2FkZGFhMjY2YmFlNWEzM2YiLCJlbWFpbCI6ImhhZHloYXNoaW0xN0BnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MzcwNTMwNTQsImV4cCI6MjMzNzA1MzA1NH0.PGzX0zyN3wWEKx22Bm0Td5MDZW3VEuQ7Kzj2S4JpSjA
+Authorization:  Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Nzg0MmM1Y2FkZGFhMjY2YmFlNWEzM2YiLCJlbWFpbCI6ImhhZHloYXNoaW0xN0BnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MzcxNDc3NTMsImV4cCI6MjMzNzE0Nzc1M30.6-q1BcRGAZYUnwCV_3ltLbKDEOf_D2q_8X7lEUGUK20
 
 {
-  "name":"Tech "
+  "name":"t-shirts76766 "
 }
 
 
 
 ### DELETE One
-DELETE     http://localhost:3000/sub-category/678953d71b7d4159997f0a47
+DELETE     http://localhost:3000/sub-category/678ac3cb088872996187f37d
 Content-Type: application/json
-Authorization:  Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Nzg0MmM1Y2FkZGFhMjY2YmFlNWEzM2YiLCJlbWFpbCI6ImhhZHloYXNoaW0xN0BnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MzcwNTMwNTQsImV4cCI6MjMzNzA1MzA1NH0.PGzX0zyN3wWEKx22Bm0Td5MDZW3VEuQ7Kzj2S4JpSjA
+Authorization:  Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Nzg0MmM1Y2FkZGFhMjY2YmFlNWEzM2YiLCJlbWFpbCI6ImhhZHloYXNoaW0xN0BnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MzcxNDc3NTMsImV4cCI6MjMzNzE0Nzc1M30.6-q1BcRGAZYUnwCV_3ltLbKDEOf_D2q_8X7lEUGUK20
 

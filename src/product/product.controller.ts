@@ -37,6 +37,8 @@ export class ProductController {
   //  @Route  GET /api/v1/product
   //  @access Public
   @Get()
+  @Roles(['admin', 'user'])
+  @UseGuards(AuthGuard)
   findAll(@Query() query) {
     return this.productService.findAll(query);
   }
@@ -44,6 +46,8 @@ export class ProductController {
   //  @Route  GET /api/v1/product
   //  @access Public
   @Get(':id')
+  @Roles(['admin', 'user'])
+  @UseGuards(AuthGuard)
   findOne(@Param('id') id: string) {
     return this.productService.findOne(id);
   }

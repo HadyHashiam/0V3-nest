@@ -4,6 +4,7 @@ import { UpdateBrandDto } from './dto/update-brand.dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Brand } from './brand.entity';
+import { ApiFeatures } from 'src/utils/apiFeatures'; // استيراد ApiFeatures
 
 @Injectable()
 export class BrandService {
@@ -14,7 +15,7 @@ export class BrandService {
     if (brand) {
       throw new HttpException('Brand already exist', 400);
     }
-
+      // create new brand
     const newBrand = await this.brandModel.create(createBrandDto);
     return {
       status: 200,
@@ -23,15 +24,27 @@ export class BrandService {
     };
   }
 
-  async findAll() {
-    const brands = await this.brandModel.find().select('-__v');
+  //#############################################################
+  async findAll(query: any) {
+    const totalDocuments = await this.brandModel.countDocuments();
+    const apiFeatures = new ApiFeatures(this.brandModel.find(), query)
+    .filter()
+    .search('Brands') // يمكن تعديل الكلمة إذا لزم الأمر
+    .sort()
+    .limitFields()
+    .paginate(totalDocuments);
+
+    const brands = await apiFeatures.getQuery();
     return {
       status: 200,
       message: 'Brands found',
       length: brands.length,
+      isEmpty: brands.length > 0 ? 'false' : 'true',
+      pagination: apiFeatures.paginationResult,
       data: brands,
     };
   }
+  //#############################################################
 
   async findOne(id: string) {
     const brand = await this.brandModel.findById(id).select('-__v');
@@ -45,6 +58,7 @@ export class BrandService {
       data: brand,
     };
   }
+  //#############################################################
 
   async update(id: string, updateBrandDto: UpdateBrandDto) {
     const brand = await this.brandModel.findById(id).select('-__v');
@@ -65,6 +79,7 @@ export class BrandService {
       data: updatedBrand,
     };
   }
+  //#############################################################
 
   async remove(id: string): Promise<void> {
     const brand = await this.brandModel.findById(id).select('-__v');

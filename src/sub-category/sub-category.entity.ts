@@ -23,3 +23,14 @@ export class SubCategory {
 }
 
 export const subCategorySchema = SchemaFactory.createForClass(SubCategory);
+
+subCategorySchema.pre(/^find/, function (this: any, next) {
+  this.populate({ path: 'category', select: '_id name ' });
+  next();
+});
+
+
+// subCategorySchema.pre('save', function (this: any, next) {
+//   this.populate({ path: 'category', select: '_id name' });
+//   next();
+// });

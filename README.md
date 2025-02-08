@@ -55,7 +55,7 @@ The project uses **Stripe API** for secure payment processing, with **Webhooks**
 ## 📦 Getting Started:
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/username/repo-name.git
+   git clone https://github.com/HadyHashiam/0V3-nest.git
    cd repo-name
    ```
 2. **Install dependencies**:

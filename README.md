@@ -26,6 +26,60 @@
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
+# 🛒 eCommerce Platform
+
+This project is a **fully-featured eCommerce system** built with **NestJS** and **MongoDB**, designed to be scalable and modular to meet the needs of modern online stores. The application is structured with multiple **modules** to efficiently manage different components of the platform.
+
+## 🚀 Key Features:
+- **User Management (User Module)**: Register, update, and manage user profiles with role-based access control.
+- **Authentication (Auth Module)**: Secure login and registration system using JWT.
+- **Category & Subcategory Management**: Create and manage product categories and subcategories.
+- **Brand Management (Brand Module)**: Add and manage brand information.
+- **Product Management (Product Module)**: Add, update, and manage products with inventory tracking.
+- **Reviews & Cart (Review & Cart Modules)**: Product reviews and shopping cart functionality.
+- **Order Management (Order Module)**: Handle order processing and payments using **Stripe** with **Webhook** integration for real-time updates.
+- **Tax & Shipping (Tax & Shipping Modules)**: Calculate taxes and shipping costs based on user location.
+- **Coupons (Coupon Module)**: Create and manage discount codes.
+- **Supplier Management (Supplier Module)**: Manage supplier details and product sourcing.
+
+## 💳 Stripe Integration:
+The project uses **Stripe API** for secure payment processing, with **Webhooks** integration to track payment statuses and order updates in real-time.
+
+## 🛠️ Tech Stack:
+- **Backend**: NestJS (TypeScript)
+- **Database**: MongoDB
+- **Authentication**: JWT (JSON Web Tokens)
+- **Payment Integration**: Stripe & Webhooks
+- **Dependency Injection**: Built on NestJS's powerful DI system for easy testing and service management.
+
+## 📦 Getting Started:
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/username/repo-name.git
+   cd repo-name
+   ```
+2. **Install dependencies**:
+   ```bash
+   npm install
+   ```
+3. **Setup environment variables**:
+   - Create a `.env` file and add your MongoDB connection string and Stripe API keys.
+4. **Run the development server**:
+   ```bash
+   npm run start:dev
+   ```
+
+## 📁 Notes:
+- Ensure you update **Stripe Webhook** settings when changing your server URL.
+- The system is designed for easy scalability, allowing you to add or modify features as needed.
+
+
+
+
+
+
+
+
 ## Project setup
 
 ```bash
